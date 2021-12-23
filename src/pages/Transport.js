@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
-const baseUrl = 'http://supernova:8080/api/v1/busInfo/busTimes';
+const baseUrl = 'http://supernova:9090/api/v1/busInfo/busTimes';
 
 const Transport = () => {
     const [response, setResponse] = useState();
