@@ -1,15 +1,21 @@
 import BusTimes from "./BusTimes";
+import Card from "../UI/Card";
 
 const BusService = props => {
-  return (
-      <li className="list-group-item">Bus number: {props.busNumber} -
-          Destination {props.busRoute}
-          <br/><br/>
-          {props.busTimes.map(time => (
-              <BusTimes key={time.key} minutes={time.minutes} arrivalTime={time.arrivalTime} />
-          ))}
-      </li>
-  );
+    return (
+        <Card>
+            <li className="list-group-item">
+                <p>Bus number: <strong>{props.busNumber}</strong> -
+                    Destination: <strong>{props.destination}</strong></p>
+                {props.busTimes.map(time => (
+                    <BusTimes
+                        key={time.key}
+                        minutes={time.minutes}
+                        arrivalTime={time.arrivalTime}/>
+                ))}
+            </li>
+        </Card>
+    );
 };
 
 export default BusService;
