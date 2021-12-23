@@ -1,4 +1,6 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
+import BookingInfo from "../components/booking/BookingInfo";
+import BookingExtras from "../components/booking/BookingExtras";
 
 const extras = {
     addonList: [
@@ -18,40 +20,14 @@ const booking = {
     hasAddons: !!extras,
 }
 
-const extrasContent = booking.extras.length > 0 ?
-    <Row>
-        <Col>
-            <p>Addons purchased: {booking.extras?.length}</p>
-            <ul className="list-group">
-                <li className="list-group-item">
-                    {booking.extras.map(extra => (
-                        <p key={extra.key}> {extra.category} | {extra.type} | £{extra.price}</p>
-                    ))}
-                </li>
-            </ul>
-        </Col>
-    </Row> :
-    null
-
 const Booking = () => {
     return (
         <Container>
-            <Row>
-                <Col>
-                    <h2>Booking: {booking.confirmationCode}</h2>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Check-in: {booking.checkin}</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Check-out: {booking.checkout}</p>
-                </Col>
-            </Row>
-            {extrasContent}
+            <BookingInfo
+                confirmationCode={booking.confirmationCode}
+                checkin={booking.checkin}
+                checkout={booking.checkout} />
+            <BookingExtras extras={booking.extras} />
         </Container>
     );
 };
