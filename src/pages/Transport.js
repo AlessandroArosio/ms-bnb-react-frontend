@@ -1,45 +1,28 @@
 import {Container} from "react-bootstrap";
 import TransportInfo from "../components/transport/TransportInfo";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
-const busResponse = [
-    {
-        key: 'r1',
-        busRoute: 'route',
-        stopId: 'stop id 3',
-        stopName: 'Whatever stop name',
-        busInfos: [
-            {
-                key: 'bus1',
-                busNumber: '2',
-                busRoute: 'nowhere',
-                busTimes: [
-                    {
-                        key: 't1',
-                        busDestination: 'home',
-                        arrivalTime: 'now',
-                        minutes: 4
-                    },
-                    {
-                        key: 't2',
-                        busDestination: 'home',
-                        arrivalTime: 'now',
-                        minutes: 6
-                    },
-                    {
-                        key: 't3',
-                        busDestination: 'home',
-                        arrivalTime: 'now',
-                        minutes: 9
-                    }
-                ]
-            }]
-    }
-];
+const baseUrl = 'http://supernova:8080/api/v1/busInfo/busTimes';
 
 const Transport = () => {
+    const [response, setResponse] = useState();
+    const [error, setError] = useState();
+
+    useEffect(() => {
+        axios.get(baseUrl).then((resp) => {
+            setResponse(resp.data);
+        }).catch(err => {
+            setError(err);
+        });
+    }, []);
+
     return (
         <Container>
-            <TransportInfo busResponse={busResponse} />
+            {!response && !error && <LoadingSpinner/>}
+            {!response && error && <h3>An error has occurred</h3>}
+            {response && !error && <TransportInfo busResponse={response}/>}
         </Container>
     );
 };

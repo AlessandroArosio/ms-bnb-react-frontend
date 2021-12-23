@@ -9,7 +9,7 @@ const BusService = props => {
                     Destination: <strong>{props.destination}</strong></p>
                 {props.busTimes.map(time => (
                     <BusTimes
-                        key={time.key}
+                        key={Math.random()}
                         minutes={time.minutes}
                         arrivalTime={time.arrivalTime}/>
                 ))}

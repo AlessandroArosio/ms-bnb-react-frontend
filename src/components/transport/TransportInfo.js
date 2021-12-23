@@ -7,7 +7,7 @@ const TransportInfo = (params) => {
             <Col>
                 <ul className="list-group">
                     {params.busResponse.map(info => (
-                        <BusStop stopName={info.stopName} key={info.key} busInfos={info.busInfos} />
+                        <BusStop stopName={info.stopName} key={info.stopId} busInfos={info.busInfos} />
                     ))}
                 </ul>
             </Col>

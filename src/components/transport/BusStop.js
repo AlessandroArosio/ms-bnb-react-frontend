@@ -10,7 +10,7 @@ const BusStop = props => {
                     <ul className="list-group">
                         {props.busInfos.map(bus => (
                             <BusService
-                                key={bus.key}
+                                key={bus.busNumber}
                                 busNumber={bus.busNumber}
                                 destination={bus.busRoute}
                                 busTimes={bus.busTimes} />
